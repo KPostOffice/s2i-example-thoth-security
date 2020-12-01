@@ -1,34 +1,38 @@
 apiVersion: v1
 kind: Template
 metadata:
-  name: s2i-example-micropipenv
+  name: s2i-example-thoth-security
   annotations:
     openshift.io/display-name: "Thoth S2I Example"
-    openshift.io/documentation-url: "https://github.com/thoth-station/s2i-example-micropipenv"
+    openshift.io/documentation-url: "https://github.com/KPostOffice/s2i-example-thoth-security"
     openshift.io/provider-display-name: "Red Hat, Inc."
     description: |-
-      An example application integrating OpenShift's s2i with Thoth's recommendation engine.
+      An example application integrating OpenShift's s2i with Thoth's security recommendations
     version: 0.2.0
-    tags: thoth,openshift,s2i,python
+    tags: thoth,openshift,s2i,python,security
     iconClass: icon-python
   labels:
-    template: s2i-example-micropipenv
-    app: "s2i-example-micropipenv"
+    template: s2i-example-thoth-security
+    app: "s2i-example-thoth-security"
 
 parameters:
-  - description: "Thoth Environment to use for retrieving advices."
+  - description: "Thoth Environment to use for retrieving advises."
     displayName: "Environment"
     name: "THOTH_HOST"
     required: true
     value: "khemenu.thoth-station.ninja"
+  - description: "Specify runtime environment for demonstration purposes."
+    displayName: "Runtime environment"
+    name: "THAMOS_RUNTIME_ENVIRONMENT"
+    required: true
 
 objects:
   - kind: BuildConfig
     apiVersion: v1
     metadata:
-      name: "s2i-example-micropipenv"
+      name: "s2i-example-thoth-security"
       labels:
-        app: "s2i-example-micropipenv"
+        app: "s2i-example-thoth-security"
     spec:
       successfulBuildsHistoryLimit: 10
       failedBuildsHistoryLimit: 10
@@ -42,12 +46,12 @@ objects:
       output:
         to:
           kind: ImageStreamTag
-          name: "s2i-example-micropipenv:latest"
+          name: "s2i-example-thoth-security:latest"
       source:
         type: Git
         git:
-          uri: "https://github.com/fridex/s2i-example-micropipenv"
-          ref: "master"
+          uri: "https://github.com/KPostOffice/s2i-example-thoth-security"
+          ref: "main"
       strategy:
         type: Source
         sourceStrategy:
@@ -55,6 +59,8 @@ objects:
             kind: ImageStreamTag
             name: "s2i-thoth-python-36:latest"
           env:
+            - name: "THAMOS_RUNTIME_ENVIRONMENT"
+              value: "${THAMOS_RUNTIME_ENVIRONMENT}" 
             - name: "ENABLE_PIPENV"
               value: "1"
             - name: "WEB_CONCURRENCY"
@@ -66,7 +72,7 @@ objects:
             - name: "THAMOS_NO_PROGRESSBAR"
               value: "1"
             - name: "THOTH_ADVISE"
-              value: "0"
+              value: "1"
             - name: "THOTH_PROVENANCE_CHECK"
               value: "0"
             #
@@ -83,46 +89,46 @@ objects:
   - kind: Route
     apiVersion: v1
     metadata:
-      name: "s2i-example-micropipenv"
+      name: "s2i-example-thoth-security"
       labels:
-        app: "s2i-example-micropipenv"
+        app: "s2i-example-thoth-security"
     spec:
       to:
         kind: Service
-        name: "s2i-example-micropipenv"
+        name: "s2i-example-thoth-security"
 
   - kind: Service
     apiVersion: v1
     metadata:
       labels:
-        app: "s2i-example-micropipenv"
-        service: s2i-example-micropipenv
-      name: "s2i-example-micropipenv"
+        app: "s2i-example-thoth-security"
+        service: s2i-example-thoth-security
+      name: "s2i-example-thoth-security"
     spec:
       ports:
         - port: 80
           protocol: TCP
           targetPort: 8080
       selector:
-        service: s2i-example-micropipenv
+        service: s2i-example-thoth-security
 
   - kind: DeploymentConfig
     apiVersion: v1
     metadata:
       labels:
-        app: "s2i-example-micropipenv"
-      name: "s2i-example-micropipenv"
+        app: "s2i-example-thoth-security"
+      name: "s2i-example-thoth-security"
     spec:
       replicas: 1
       selector:
-        service: "s2i-example-micropipenv"
+        service: "s2i-example-thoth-security"
       template:
         metadata:
           labels:
-            service: "s2i-example-micropipenv"
+            service: "s2i-example-thoth-security"
         spec:
           containers:
-            - name: "s2i-example-micropipenv"
+            - name: "s2i-example-thoth-security"
               ports:
                 - containerPort: 8080
                   protocol: TCP
@@ -140,31 +146,31 @@ objects:
           imageChangeParams:
             automatic: true
             containerNames:
-              - "s2i-example-micropipenv"
+              - "s2i-example-thoth-security"
             from:
               kind: ImageStreamTag
-              name: "s2i-example-micropipenv:latest"
+              name: "s2i-example-thoth-security:latest"
 
   - apiVersion: "image.openshift.io/v1"
     kind: ImageStream
     metadata:
       labels:
-        app: "s2i-example-micropipenv"
-      name: "s2i-example-micropipenv"
+        app: "s2i-example-thoth-security"
+      name: "s2i-example-thoth-security"
     spec:
-      name: "s2i-example-micropipenv"
+      name: "s2i-example-thoth-security"
 
   - apiVersion: "image.openshift.io/v1"
     kind: ImageStream
     metadata:
       labels:
-        app: "s2i-example-micropipenv"
+        app: "s2i-example-thoth-security"
       name: "s2i-thoth-python-36"
     spec:
       tags:
         - name: "latest"
           from:
             kind: "DockerImage"
-            name: "quay.io/thoth-station/s2i-thoth-ubi8-py36:v0.15.0"
+            name: "quay.io/thoth-station/s2i-thoth-ubi8-py36:v0.21.1"
           referencePolicy:
             type: "Source"
