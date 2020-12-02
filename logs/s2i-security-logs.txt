@@ -1,0 +1,197 @@
+﻿Caching blobs under "/var/cache/blobs".
+Getting image source signatures
+Copying blob sha256:746e491fc6f6d804c7f3ae34da363ccfbf206d8196ff72f48c3a0fb202927289
+Copying blob sha256:2603ccf3ba62ab3cdf4fbe4ae582ed4c9e7191d16efaf5c0bdedafe2cbdf5553
+Copying blob sha256:fcf486f2bce3eef5b2753889db540addd16f0e58b99c1f255925ea104d83add6
+Copying blob sha256:0c7bc3c1e1a396e2e329b971eeab99d8c2dcc8ce18964770bff841eedfff3397
+Copying blob sha256:6500ac87b29ffd00c8655be65a6824dfcf9fc0accc625158ef1060bcedc84ca8
+Copying blob sha256:1b8dabac56ed728c17a670d327474ab87dc392dc17721854ea599a7753326579
+Copying blob sha256:97906440d4893f319723e07f8db998b12efcb08b4b696b0e8f4166bb6d3add2e
+Copying config sha256:457955f46f384ad714b85a9a90b23c67ff4a1d015d1f7aeba1087b23eff6c39f
+Writing manifest to image destination
+Storing signatures
+Generating dockerfile with builder image quay.io/thoth-station/s2i-thoth-ubi8-py36@sha256:1a06b99af24cbbb71709c54d1d88f81eff1c9a48546ba980b1fa2578192c936c
+STEP 1: FROM quay.io/thoth-station/s2i-thoth-ubi8-py36@sha256:1a06b99af24cbbb71709c54d1d88f81eff1c9a48546ba980b1fa2578192c936c
+STEP 2: LABEL "io.openshift.build.image"="quay.io/thoth-station/s2i-thoth-ubi8-py36@sha256:1a06b99af24cbbb71709c54d1d88f81eff1c9a48546ba980b1fa2578192c936c"       "io.openshift.build.source-location"="/tmp/build/inputs"
+STEP 3: ENV OPENSHIFT_BUILD_NAME="s2i-example-thoth-security-6"     OPENSHIFT_BUILD_NAMESPACE="kpostlet-thoth-dev"     THAMOS_RUNTIME_ENVIRONMENT="security"     ENABLE_PIPENV="1"     WEB_CONCURRENCY="4"     THOTH_HOST="khemenu.thoth-station.ninja"     THAMOS_CONFIG_EXPAND_ENV="0"     THAMOS_NO_PROGRESSBAR="1"     THOTH_ADVISE="1"     THOTH_PROVENANCE_CHECK="0"
+STEP 4: USER root
+STEP 5: COPY upload/src /tmp/src
+STEP 6: RUN chown -R 1001:0 /tmp/src
+STEP 7: USER 1001
+STEP 8: RUN /usr/libexec/s2i/assemble
+/tmp/src ~
+>>> Thoth s2i builder image version: 0.21.1
+>>> Performing hardware and software discovery...
+2020-12-01 21:53:02,804 [512] INFO     thamos: Configuration file already present, no action performed in non-interactive mode
+>>> Thoth's configuration file after hardware and software discovery:
+{
+  "host": "khemenu.thoth-station.ninja",
+  "tls_verify": false,
+  "requirements_format": "pipenv",
+  "runtime_environments": [
+    {
+      "name": "security",
+      "operating_system": {
+        "name": "rhel",
+        "version": "8.0"
+      },
+      "python_version": "3.6",
+      "recommendation_type": "security"
+    },
+    {
+      "name": "latest",
+      "operating_system": {
+        "name": "rhel",
+        "version": "8.0",
+        "python_version": "3.6",
+        "recommendation_type": "latest"
+      }
+    }
+  ]
+}
+>>> Asking Thoth for advise...
+2020-12-01 21:53:04,476 [518] WARNING  thamos: Development dependencies will not be considered during the resolution process - see https://thoth-station.ninja/j/no_dev
+2020-12-01 21:53:04,477 [518] INFO     thamos.lib: Using Pipenv files located in the project root directory
+2020-12-01 21:53:04,480 [518] WARNING  thamos.config: TLS verification turned off, its highly recommended to use a secured connection, see configuration file for configuration options
+2020-12-01 21:53:11,036 [518] INFO     thamos.lib: Performing static analysis of sources to gather library usage
+2020-12-01 21:53:11,492 [518] INFO     thamos.lib: Successfully submitted advise analysis 'adviser-bcda626d' to 'https://khemenu.thoth-station.ninja/api/v1'
+                           Application stack guidance                           
+                                  ╷                                  ╷          
+  Link                            │ Message                          │ Type     
+ ═════════════════════════════════╪══════════════════════════════════╪═════════ 
+  https://thoth-station.ninja/j/p │ No platform provided in the      │ WARNING  
+  latform                         │ configuration, setting to        │          
+                                  │ 'linux-x86_64' implicitly        │          
+  https://thoth-station.ninja/j/b │ Removing package ('jinja2',      │ WARNING  
+  uildtime_error                  │ '2.6',                           │          
+                                  │ 'https://pypi.org/simple') due   │          
+                                  │ to build time error in the       │          
+                                  │ software environment             │          
+  https://thoth-station.ninja/j/b │ Removing package ('jinja2',      │ WARNING  
+  uildtime_error                  │ '2.5.5',                         │          
+                                  │ 'https://pypi.org/simple') due   │          
+                                  │ to build time error in the       │          
+                                  │ software environment             │          
+  https://thoth-station.ninja/j/b │ Removing package ('jinja2',      │ WARNING  
+  uildtime_error                  │ '2.5.4',                         │          
+                                  │ 'https://pypi.org/simple') due   │          
+                                  │ to build time error in the       │          
+                                  │ software environment             │          
+  https://thoth-station.ninja/j/b │ Removing package ('jinja2',      │ WARNING  
+  uildtime_error                  │ '2.5.3',                         │          
+                                  │ 'https://pypi.org/simple') due   │          
+                                  │ to build time error in the       │          
+                                  │ software environment             │          
+  https://thoth-station.ninja/j/b │ Removing package ('jinja2',      │ WARNING  
+  uildtime_error                  │ '2.5.2',                         │          
+                                  │ 'https://pypi.org/simple') due   │          
+                                  │ to build time error in the       │          
+                                  │ software environment             │          
+  https://thoth-station.ninja/j/b │ Removing package ('jinja2',      │ WARNING  
+  uildtime_error                  │ '2.5.1',                         │          
+                                  │ 'https://pypi.org/simple') due   │          
+                                  │ to build time error in the       │          
+                                  │ software environment             │          
+  https://thoth-station.ninja/j/b │ Removing package ('jinja2',      │ WARNING  
+  uildtime_error                  │ '2.5',                           │          
+                                  │ 'https://pypi.org/simple') due   │          
+                                  │ to build time error in the       │          
+                                  │ software environment             │          
+  https://thoth-station.ninja/j/b │ Removing package ('jinja2',      │ WARNING  
+  uildtime_error                  │ '2.4.1',                         │          
+                                  │ 'https://pypi.org/simple') due   │          
+                                  │ to build time error in the       │          
+                                  │ software environment             │          
+  https://thoth-station.ninja/j/b │ Removing package ('jinja2',      │ WARNING  
+  uildtime_error                  │ '2.4',                           │          
+                                  │ 'https://pypi.org/simple') due   │          
+                                  │ to build time error in the       │          
+                                  │ software environment             │          
+  https://thoth-station.ninja/j/b │ Removing package ('jinja2',      │ WARNING  
+  uildtime_error                  │ '2.0',                           │          
+                                  │ 'https://pypi.org/simple') due   │          
+                                  │ to build time error in the       │          
+                                  │ software environment             │          
+  https://thoth-station.ninja/j/b │ Removing package ('werkzeug',    │ WARNING  
+  uildtime_error                  │ '0.10.3',                        │          
+                                  │ 'https://pypi.org/simple') due   │          
+                                  │ to build time error in the       │          
+                                  │ software environment             │          
+  https://thoth-station.ninja/j/b │ Removing package ('werkzeug',    │ WARNING  
+  uildtime_error                  │ '0.1',                           │          
+                                  │ 'https://pypi.org/simple') due   │          
+                                  │ to build time error in the       │          
+                                  │ software environment             │          
+  https://thoth-station.ninja/j/s │ No security info for flask===0.6 │ WARNING  
+  ecurity                         │ on https://pypi.org/simple       │          
+  https://thoth-station.ninja/j/s │ No security info for             │ WARNING  
+  ecurity                         │ flask===0.5.2 on                 │          
+                                  │ https://pypi.org/simple          │          
+  https://thoth-station.ninja/j/s │ No security info for             │ WARNING  
+  ecurity                         │ flask===0.5.1 on                 │          
+                                  │ https://pypi.org/simple          │          
+  https://thoth-station.ninja/j/s │ No security info for flask===0.5 │ WARNING  
+  ecurity                         │ on https://pypi.org/simple       │          
+  https://thoth-station.ninja/j/s │ No security info for flask===0.4 │ WARNING  
+  ecurity                         │ on https://pypi.org/simple       │          
+  https://thoth-station.ninja/j/s │ No security info for             │ WARNING  
+  ecurity                         │ flask===0.3.1 on                 │          
+                                  │ https://pypi.org/simple          │          
+  https://thoth-station.ninja/j/s │ No security info for flask===0.3 │ WARNING  
+  ecurity                         │ on https://pypi.org/simple       │          
+  https://thoth-station.ninja/j/s │ No security info for flask===0.2 │ WARNING  
+  ecurity                         │ on https://pypi.org/simple       │          
+  https://thoth-station.ninja/j/n │ Resolver did not find any stack  │ ERROR    
+  o_stack                         │ that would satisfy requirements  │          
+                                  │ and stack characteristics given  │          
+                                  │ the time allocated               │          
+                                  ╵                                  ╵          
+Resolver did not find any stack that would satisfy requirements and stack characteristics given the time allocated- see https://thoth-station.ninja/j/no_stack
+>>> Thoth stack analysis failed with the following log:
+2020-12-01 21:53:39,350 [590] WARNING  thamos.config: TLS verification turned off, its highly recommended to use a secured connection, see configuration file for configuration options
+2020-12-01 21:53:26,455 thoth.adviser               INFO: Version: 0.21.1
+2020-12-01 21:53:26,458 thoth.adviser               INFO: Starting resolver using 'TemporalDifference' predictor with random seed set to 42, predictor parameters: {'step': 1, 'temperature_coefficient': 0.999, 'trace': False}
+2020-12-01 21:53:26,717 thoth.adviser.pipeline_builder INFO: Creating pipeline configuration
+2020-12-01 21:53:26,852 thoth.adviser.run           WARNING: Development dependencies will not be taken into account - see https://thoth-station.ninja/j/no_dev
+2020-12-01 21:53:26,861 thoth.adviser.boots.rhel_version INFO: RHEL major releases guarantee ABI compatibility across minor releases; discarding minor release information and using RHEL version '8' - see https://thoth-station.ninja/j/rhel_version
+2020-12-01 21:53:26,863 thoth.adviser.boots.platform WARNING: No platform provided in the configuration, setting to 'linux-x86_64' implicitly - see https://thoth-station.ninja/j/platform
+2020-12-01 21:53:26,880 thoth.adviser.resolver      INFO: Scoring user's stack - see https://thoth-station.ninja/j/user_stack
+2020-12-01 21:53:26,880 thoth.adviser.resolver      INFO: Cannot score user's stack - no user's stack provided - see https://thoth-station.ninja/j/user_stack
+2020-12-01 21:53:26,880 thoth.adviser.resolver      INFO: Preparing initial states for the resolution pipeline
+2020-12-01 21:53:26,881 thoth.adviser.resolver      INFO: Resolving direct dependencies
+2020-12-01 21:53:27,096 thoth.adviser.resolver      INFO: Found direct dependency 'flask' with version specification '<=0.6'
+2020-12-01 21:53:27,481 thoth.adviser.resolver      INFO: Hold tight, Thoth is computing recommendations for your application...
+2020-12-01 21:53:28,555 thoth.adviser.sieves.solved WARNING: Removing package ('jinja2', '2.6', 'https://pypi.org/simple') due to build time error in the software environment - see https://thoth-station.ninja/j/buildtime_error
+2020-12-01 21:53:28,563 thoth.adviser.sieves.solved WARNING: Removing package ('jinja2', '2.5.5', 'https://pypi.org/simple') due to build time error in the software environment - see https://thoth-station.ninja/j/buildtime_error
+2020-12-01 21:53:28,570 thoth.adviser.sieves.solved WARNING: Removing package ('jinja2', '2.5.4', 'https://pypi.org/simple') due to build time error in the software environment - see https://thoth-station.ninja/j/buildtime_error
+2020-12-01 21:53:28,576 thoth.adviser.sieves.solved WARNING: Removing package ('jinja2', '2.5.3', 'https://pypi.org/simple') due to build time error in the software environment - see https://thoth-station.ninja/j/buildtime_error
+2020-12-01 21:53:28,583 thoth.adviser.sieves.solved WARNING: Removing package ('jinja2', '2.5.2', 'https://pypi.org/simple') due to build time error in the software environment - see https://thoth-station.ninja/j/buildtime_error
+2020-12-01 21:53:28,590 thoth.adviser.sieves.solved WARNING: Removing package ('jinja2', '2.5.1', 'https://pypi.org/simple') due to build time error in the software environment - see https://thoth-station.ninja/j/buildtime_error
+2020-12-01 21:53:28,597 thoth.adviser.sieves.solved WARNING: Removing package ('jinja2', '2.5', 'https://pypi.org/simple') due to build time error in the software environment - see https://thoth-station.ninja/j/buildtime_error
+2020-12-01 21:53:28,604 thoth.adviser.sieves.solved WARNING: Removing package ('jinja2', '2.4.1', 'https://pypi.org/simple') due to build time error in the software environment - see https://thoth-station.ninja/j/buildtime_error
+2020-12-01 21:53:28,613 thoth.adviser.sieves.solved WARNING: Removing package ('jinja2', '2.4', 'https://pypi.org/simple') due to build time error in the software environment - see https://thoth-station.ninja/j/buildtime_error
+2020-12-01 21:53:28,639 thoth.adviser.sieves.solved WARNING: Removing package ('jinja2', '2.0', 'https://pypi.org/simple') due to build time error in the software environment - see https://thoth-station.ninja/j/buildtime_error
+2020-12-01 21:53:29,192 thoth.adviser.sieves.solved WARNING: Removing package ('werkzeug', '0.10.3', 'https://pypi.org/simple') due to build time error in the software environment - see https://thoth-station.ninja/j/buildtime_error
+2020-12-01 21:53:29,434 thoth.adviser.sieves.solved WARNING: Removing package ('werkzeug', '0.1', 'https://pypi.org/simple') due to build time error in the software environment - see https://thoth-station.ninja/j/buildtime_error
+2020-12-01 21:53:29,480 thoth.adviser.steps.security_indicators WARNING: No security info for flask===0.6 on https://pypi.org/simple - see https://thoth-station.ninja/j/security
+2020-12-01 21:53:29,542 thoth.adviser.steps.security_indicators WARNING: No security info for flask===0.5.2 on https://pypi.org/simple - see https://thoth-station.ninja/j/security
+2020-12-01 21:53:29,596 thoth.adviser.steps.security_indicators WARNING: No security info for flask===0.5.1 on https://pypi.org/simple - see https://thoth-station.ninja/j/security
+2020-12-01 21:53:29,658 thoth.adviser.steps.security_indicators WARNING: No security info for flask===0.5 on https://pypi.org/simple - see https://thoth-station.ninja/j/security
+2020-12-01 21:53:29,709 thoth.adviser.steps.security_indicators WARNING: No security info for flask===0.4 on https://pypi.org/simple - see https://thoth-station.ninja/j/security
+2020-12-01 21:53:29,760 thoth.adviser.steps.security_indicators WARNING: No security info for flask===0.3.1 on https://pypi.org/simple - see https://thoth-station.ninja/j/security
+2020-12-01 21:53:29,817 thoth.adviser.steps.security_indicators WARNING: No security info for flask===0.3 on https://pypi.org/simple - see https://thoth-station.ninja/j/security
+2020-12-01 21:53:29,864 thoth.adviser.steps.security_indicators WARNING: No security info for flask===0.2 on https://pypi.org/simple - see https://thoth-station.ninja/j/security
+2020-12-01 21:53:29,883 thoth.adviser.steps.cve     WARNING: Skipping including package ('flask', '0.1', 'https://pypi.org/simple') as a CVE CVE-2018-1000656 was found: flask version Before 0.12.3 contains a CWE-20: Improper Input Validation vulnerability in flask that can result in Large amount of memory usage possibly leading to denial of service. This attack appear to be exploitable via Attacker provides JSON data in incorrect encoding. This vulnerability appears to have been fixed in 0.12.3.
+2020-12-01 21:53:29,883 thoth.adviser.steps.cve     WARNING: Skipping including package ('flask', '0.1', 'https://pypi.org/simple') as a CVE pyup.io-25820 was found: flask 0.6.1 fixes a security problem that allowed clients to download arbitrary files  if the host server was a windows based operating system and the client  uses backslashes to escape the directory the files where exposed from.
+2020-12-01 21:53:29,883 thoth.adviser.steps.cve     WARNING: Skipping including package ('flask', '0.1', 'https://pypi.org/simple') as a CVE CVE-2019-1010083 was found: The Pallets Project Flask before 1.0 is affected by: unexpected memory usage. The impact is: denial of service. The attack vector is: crafted encoded JSON data. The fixed version is: 1. See: CVE-2019-1010083. (NOTE: this may overlap CVE-2018-1000656.)
+2020-12-01 21:53:29,883 thoth.adviser.resolver      WARNING: No more possible paths found for resolution, terminating resolver in iteration 9, see - https://thoth-station.ninja/j/no_paths
+2020-12-01 21:53:29,883 thoth.adviser.resolver      INFO: Resolver took 3.02255 seconds in total, pipeline speed 0 stacks/second
+2020-12-01 21:53:29,883 thoth.adviser.resolver      INFO: Pipeline strides discarded 0 and accepted 0 software stacks in total
+2020-12-01 21:53:29,884 thoth.adviser.run           ERROR: Resolver did not produce any software stack: Resolver did not find any stack that would satisfy requirements and stack characteristics given the time allocated- see https://thoth-station.ninja/j/no_stack
+2020-12-01 21:53:29,922 thoth.adviser.run           ERROR: Child exited with exit code 512
+2020-12-01 21:53:29,925 thoth.adviser.run           ERROR: Resolution was terminated based on errors encountered; see logs for more info - https://thoth-station.ninja/j/error_logs
+
+>>> Thoth stack analysis failed, this build will fail shortly...
+subprocess exited with status 1
+subprocess exited with status 1
+error: build error: error building at STEP "RUN /usr/libexec/s2i/assemble": exit status 1

@@ -68,7 +68,7 @@ objects:
             - name: "THOTH_HOST"
               value: "${THOTH_HOST}"
             - name: "THAMOS_CONFIG_EXPAND_ENV"
-              value: "1"
+              value: "0"
             - name: "THAMOS_NO_PROGRESSBAR"
               value: "1"
             - name: "THOTH_ADVISE"

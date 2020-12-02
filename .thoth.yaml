@@ -14,5 +14,5 @@ runtime_environments:
     operating_system:
       name: rhel
       version: '8.0'
-      python_version: '3.6'
-      recommendation_type: latest
+    python_version: '3.6'
+    recommendation_type: latest
