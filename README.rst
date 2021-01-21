@@ -2,8 +2,10 @@ thoth-security example for OpenShift's Python s2i
 ----------------------------------------------
 
 
-This repository contains all the materials needed to test and demo thoth security based advises for OpenShift's s2i
-container image build process.
+This repository contains all the materials needed to test and demo thoth
+security based advises for OpenShift's s2i container image build process. For a
+video walkthrough, check `this YouTube video
+<https://www.youtube.com/watch?v=bOUEEh3u0Ug>`__.
 
 The application consists of a simple Flask server that is built and deployed
 into OpenShift.
